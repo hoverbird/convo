@@ -10,9 +10,7 @@ var arguments = process.argv.splice(2)
 var conv = JSON.parse(fs.readFileSync(arguments[0], 'utf8'))[0]
 
 function askQuestions(n) {
-  responses = n.children.map(function(i) {
-    return i.name
-  })
+  responses = n.children.map(function(i) { return i.name })
 
   var question = {
     name: n.name,
@@ -36,7 +34,7 @@ function askQuestions(n) {
         convoOver(whatsNext)
       }
     } else {
-      throw "Not a valid choice"
+      convoOver({name : "... that was not an option"})
     }
   })
 }
