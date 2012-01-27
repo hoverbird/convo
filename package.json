@@ -1,0 +1,15 @@
+{
+  "name": "convo",
+  "version": "0.0.1",
+  "author": "Patrick Ewing <patrick.henry.ewing@gmail.com>",
+  "description": "A tiny conversation tree runner",
+  "dependencies" : {
+    "colors"   :  "*",
+    "underscore" :  "*",
+    "prompt" :  "0.1.12"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=6.5"
+  }
+}
