@@ -7,7 +7,7 @@ var _ = require("underscore")
 var fs = require('fs')
 var arguments = process.argv.splice(2)
 
-var conv = JSON.parse(fs.readFileSync(arguments[0], 'utf8'))
+var conv = JSON.parse(fs.readFileSync(arguments[0], 'utf8'))[0]
 
 function askQuestions(n) {
   responses = n.children.map(function(i) {
@@ -30,10 +30,10 @@ function askQuestions(n) {
     if (choice.length == 1) {
       var whatsNext = choice[0].children[0]
 
-      if (whatsNext.children.length) {
+      if (whatsNext && whatsNext.children.length) {
         askQuestions(whatsNext)
       } else {
-        convoOver(whatsNext.name)
+        convoOver(whatsNext)
       }
     } else {
       throw "Not a valid choice"
@@ -41,8 +41,12 @@ function askQuestions(n) {
   })
 }
 
-function convoOver(message) {
-  console.log(message.magenta)
+function convoOver(lastNode) {
+  if (lastNode) {
+    console.log(message.magenta)
+  } else {
+    console.log("Game over, man".magenta)
+  }
   return 1
 }
 

@@ -2,18 +2,16 @@
 
 framework "ScriptingBridge"
 require 'json'
+
 class GraffleConverter
   def initialize
-    puts 000
     @graffle = SBApplication.applicationWithBundleIdentifier("com.omnigroup.OmniGraffle")
   end
 
   def to_hash
-    puts 111
     @shape_list = []
 
     @graffle.windows[0].document.canvases[0].layers[0].shapes.select do |s|
-      puts 222
       @shape_list << s
       s.incomingLines.length == 0 and s.outgoingLines.length > 1
     end.collect { |root| process_node(root) }
@@ -42,4 +40,7 @@ class GraffleConverter
   end
 end
 
-puts GraffleConverter.new.to_hash.to_json
+json = GraffleConverter.new.to_hash.to_json
+puts json
+
+File.open('new_convo.json', 'w') {|f| f.write json }
