@@ -1,6 +1,7 @@
 require("colors")
 var prompt = require('prompt')
 prompt.message = ">>".green
+prompt.delimeter = "_"
 prompt.start()
 
 var _ = require("underscore")
@@ -14,7 +15,7 @@ function askQuestions(n) {
 
   var question = {
     name: n.name,
-    message: _.flatten([n.name.magenta, responses]).join('\n')
+    message: _.flatten([n.name.magenta, responses, '']).join('\n')
   }
 
   prompt.get([question], function (err, result) {
