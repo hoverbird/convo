@@ -1,6 +1,6 @@
-var prompt = require('prompt');
-require("colors");
-
+var prompt = require('prompt')
+var _ = require("underscore")
+require("colors")
 
 conv =
 {
@@ -87,46 +87,37 @@ conv =
                     "name": "do you like the Smiths?\n"
                 }
             ],
-            "name": "I'm from SF"
+            "name": "I'm from Sacramento"
         }
     ],
     "name": "Where do you come from?"
 }
-// console.log(process.argv);
 prompt.message = ">>".green;
-// prompt.delimiter = "><".green;
-
 prompt.start();
-// var children = conv.children
 
 askQuestions(conv);
 
 function askQuestions(n) {
-  // console.log("askQuestions!".green, n)
   responses = n.children.map(function(i) {
     return i.name
   });
 
   var question = {
     name: n.name,
-    message: n.name.magenta + "\n" + responses.join('\n')
+    message: _.flatten([n.name.magenta, responses]).join('\n')
   }
 
   prompt.get([question], function (err, result) {
     if (err) { return onErr(err); }
     var selection = result[n.name];
 
-    // console.log("result", result);
-    // console.log("selection", selection.blue);
-
     var choice = n.children.filter(function(i) {
-      // console.log('compare'.green, i.name, selection, i.name == selection)
       return i.name.trim() == selection
     })
 
-    // console.log('choice', choice)
     if (choice.length == 1) {
       var whatsNext = choice[0].children[0];
+
       if (whatsNext.children.length) {
         askQuestions(whatsNext)
       } else {
