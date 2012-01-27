@@ -42,8 +42,8 @@ function askQuestions(n) {
 }
 
 function convoOver(lastNode) {
-  if (lastNode) {
-    console.log(message.magenta)
+  if (lastNode.name) {
+    console.log(lastNode.name.magenta)
   } else {
     console.log("Game over, man".magenta)
   }
