@@ -1,0 +1,39 @@
+[
+    {
+        "name": "What's yr business, stranger?",
+        "children": [
+            {
+                "name": "Just selling these fine leather jackets.",
+                "children": [
+                    {
+                        "name": "Get lost!",
+                        "children": []
+                    }
+                ],
+                "name": "I'm a migty pirate!"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "name": "I'll take 170 million."
+                                    }
+                                ],
+                                "name": "2 bucks"
+                            },
+                            {
+                                "children": [],
+                                "name": "149 dollars"
+                            }
+                        ],
+                        "name": "How much?"
+                    }
+                ]
+            }
+        ]
+    }
+]

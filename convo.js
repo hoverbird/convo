@@ -11,7 +11,9 @@ var arguments = process.argv.splice(2)
 var conv = JSON.parse(fs.readFileSync(arguments[0], 'utf8'))[0]
 
 function askQuestions(n) {
-  responses = n.children.map(function(i) { return i.name })
+  responses = _.map(n.children, function(answer, index) {
+    return (index + 1 + ":   ").blue + answer.name
+  })
 
   var question = {
     name: n.name,
@@ -22,12 +24,17 @@ function askQuestions(n) {
     if (err) { return onErr(err) }
     var selection = result[n.name]
 
-    var choice = n.children.filter(function(i) {
-      return i.name.trim() == selection
-    })
+    // Is it a number, or are they typing in the full response?
+    if (_.isNumber(+selection) && !_.isNaN(+selection)) {
+      var choice = n.children[selection - 1]
+    } else {
+      var choice = n.children.find(function(i) {
+        return i.name.trim() == selection
+      })
+    }
 
-    if (choice.length == 1) {
-      var whatsNext = choice[0].children[0]
+    if (_.isObject(choice)) {
+      var whatsNext = choice.children[0]
 
       if (whatsNext && whatsNext.children.length) {
         askQuestions(whatsNext)
@@ -41,7 +48,7 @@ function askQuestions(n) {
 }
 
 function convoOver(lastNode) {
-  if (lastNode.name) {
+  if (lastNode && lastNode.name) {
     console.log(lastNode.name.magenta)
   } else {
     console.log("Game over, man".magenta)
@@ -54,5 +61,4 @@ function onErr(err) {
   return 0
 }
 
-// Start it off
 askQuestions(conv)
