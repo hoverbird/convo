@@ -14,7 +14,7 @@ class GraffleConverter
     @graffle.windows[0].document.canvases[0].layers[0].shapes.select do |s|
       @shape_list << s
       s.incomingLines.length == 0 and s.outgoingLines.length > 1
-    end.collect { |root| process_node(root) }
+    end.compact.collect { |root| puts '111'; puts root.text.get.inspect; process_node(root) }
   end
 
   # ==========
@@ -28,6 +28,9 @@ class GraffleConverter
 
   private
   def process_node(shape)
+    puts shape.text.get
+    raise ArgumentError, "No shape passed" unless shape
+
     children = []
 
     shape.outgoingLines.each do |line|
