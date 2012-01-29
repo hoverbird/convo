@@ -9,10 +9,10 @@
                         "name": "Get lost!",
                         "children": []
                     }
-                ],
-                "name": "I'm a migty pirate!"
+                ]
             },
             {
+              "name": "I'm a migty pirate!",
                 "children": [
                     {
                         "children": [

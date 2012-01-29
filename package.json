@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "vows": "0.6.0",
-    "gently": "*"
+    "gently": "*",
+    "winston": "*"
   },
   "license": "MIT",
   "engine": {
