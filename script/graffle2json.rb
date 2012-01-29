@@ -14,7 +14,7 @@ class GraffleConverter
     @graffle.windows[0].document.canvases[0].layers[0].shapes.select do |s|
       @shape_list << s
       s.incomingLines.length == 0 and s.outgoingLines.length > 1
-    end.compact.collect { |root| puts '111'; puts root.text.get.inspect; process_node(root) }
+    end.compact.collect { |root| process_node(root) }
   end
 
   # ==========
@@ -44,6 +44,4 @@ class GraffleConverter
 end
 
 json = GraffleConverter.new.to_hash.to_json
-puts json
-
 File.open('new_convo.json', 'w') {|f| f.write json }

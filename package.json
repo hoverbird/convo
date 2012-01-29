@@ -8,6 +8,10 @@
     "underscore" :  "*",
     "prompt" :  "0.1.12"
   },
+  "devDependencies": {
+    "vows": "0.6.0",
+    "gently": "*"
+  },
   "license": "MIT",
   "engine": {
     "node": ">=6.5"
